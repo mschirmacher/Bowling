@@ -5,6 +5,7 @@ import com.github.ajalt.mordant.rendering.VerticalAlign
 import com.github.ajalt.mordant.table.*
 import com.github.ajalt.mordant.terminal.Terminal
 import com.github.mschirmacher.domain.FrameScore
+import com.github.mschirmacher.domain.Roll
 import com.github.mschirmacher.domain.Score
 
 class ScorePrinter(private val terminal: Terminal) {
@@ -78,11 +79,12 @@ class ScorePrinter(private val terminal: Terminal) {
         }
     }
 
-    private fun Int?.toDisplayString(): String {
-        return when (this) {
-            null -> " "
-            10   -> "╳"
-            else -> "$this"
+    private fun Roll?.toDisplayString(): String {
+        return when {
+            this == null -> " "
+            isStrike()   -> "╳"
+            isSpare()    -> "̸"
+            else         -> "${this.pinsHit}"
         }
     }
 }

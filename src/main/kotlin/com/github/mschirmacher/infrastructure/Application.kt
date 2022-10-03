@@ -9,7 +9,7 @@ fun main() {
 
     val terminal = Terminal(width = 1024)
     val numberOfPlayers =
-        terminal.prompt("Number of players?", choices = (1..8).map { it.toString() })?.toInt() ?: return
+            terminal.prompt("Number of players?", choices = (1..8).map { it.toString() })?.toInt() ?: return
 
     terminal.println("$numberOfPlayers selected")
 
@@ -29,7 +29,7 @@ fun main() {
             break;
         }
 
-        activeGames.forEach { player, gameOfBowling ->
+        activeGames.forEach { (player, gameOfBowling) ->
             val pinsLeftToHit = gameOfBowling.pinsLeftToHit
             val pinsHitInRoll = Random.nextInt(0, pinsLeftToHit + 1)
             gameOfBowling.roll(pinsHitInRoll)
